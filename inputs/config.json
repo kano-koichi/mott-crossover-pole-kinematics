@@ -1,0 +1,309 @@
+{
+  "grid": {
+    "temperature": 0.05
+  },
+  "bands": [
+    {
+      "id": "square_reference",
+      "label": "nearest-neighbor square reference",
+      "t": 1.0,
+      "tp": 0.0,
+      "tpp": 0.0,
+      "mu": 0.0
+    }
+  ],
+  "readout": {
+    "nodal_width": 0.28,
+    "antinodal_center": 0.55,
+    "hubbard_min": 0.75,
+    "hubbard_max": 3.4
+  },
+  "markers": {
+    "fractions": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "minimum_relative_change": 0.05,
+    "minimum_monotonicity_score": 0.85,
+    "monotonicity_tolerance": 1e-10
+  },
+  "controlled_mott_pole": {
+    "delta_max": 1.6,
+    "gamma_m": 0.1,
+    "gamma_bg": 0.04,
+    "bath_width": 10.0
+  },
+  "two_site_dmft": {
+    "enabled": true,
+    "nk": 80,
+    "nw": 1201,
+    "wmax": 12.0,
+    "n_lambda": 31,
+    "u_min_ratio": 0.0,
+    "u_max_ratio": 1.08,
+    "z_imaginary_frequencies": [
+      0.0002,
+      0.0005,
+      0.001,
+      0.002
+    ],
+    "spectral_broadening": 0.08,
+    "lattice_broadening": 0.04,
+    "self_consistency_tolerance": 1e-10,
+    "maximum_iterations": 80,
+    "hybridization_floor": 1e-06,
+    "moment_nk": 512,
+    "readouts": [
+      "transport_quadratic",
+      "low_energy_spectral",
+      "high_energy_spectral"
+    ],
+    "high_energy_min_band_edge_factor": 1.05,
+    "high_energy_max_band_edge_factor": 2.2,
+    "models": [
+      {
+        "id": "two_site_square",
+        "label": "half-filled square lattice",
+        "t": 1.0,
+        "tx": 1.0,
+        "ty": 1.0,
+        "tp": 0.0,
+        "tpp": 0.0,
+        "mu": 0.0
+      },
+      {
+        "id": "two_site_anisotropic",
+        "label": "half-filled anisotropic lattice",
+        "t": 1.0,
+        "tx": 1.0,
+        "ty": 0.55,
+        "tp": 0.0,
+        "tpp": 0.0,
+        "mu": 0.0
+      }
+    ],
+    "pass_analytic_z_error": 0.0002,
+    "pass_self_consistency_residual": 2e-08,
+    "pass_impurity_occupancy_error": 1e-10,
+    "pass_sum_rule_abs_error": 0.04,
+    "pass_density_error": 0.01,
+    "pass_causality_im_sigma": 1e-10,
+    "pass_marker_prediction_error": 1e-08,
+    "minimum_marker_separation": 0.02,
+    "convergence": {
+      "enabled": true,
+      "model_id": "two_site_square",
+      "n_lambda": 21,
+      "grids": [
+        {
+          "nk": 64,
+          "nw": 1201
+        },
+        {
+          "nk": 80,
+          "nw": 1201
+        }
+      ],
+      "pass_marker_spread": 0.012
+    },
+    "broadening_robustness": {
+      "enabled": true,
+      "model_id": "two_site_square",
+      "nk": 80,
+      "nw": 1201,
+      "n_lambda": 21,
+      "values": [
+        0.035,
+        0.04,
+        0.05
+      ]
+    },
+    "readout_temperature": 0.05,
+    "impurity_inverse_temperature": 200.0,
+    "temperature_convention": "The two-site impurity is evaluated in a ground-state proxy limit set by impurity_inverse_temperature. readout_temperature defines only the finite-width Fermi-window kernel used to compare spectral observables; it is not the DMFT solver temperature.",
+    "high_energy_window_robustness": {
+      "enabled": true,
+      "nk": 64,
+      "nw": 1201,
+      "n_lambda": 21,
+      "windows": [
+        {
+          "id": "w080_180",
+          "min_factor": 0.8,
+          "max_factor": 1.8
+        },
+        {
+          "id": "w080_220",
+          "min_factor": 0.8,
+          "max_factor": 2.2
+        },
+        {
+          "id": "w105_180",
+          "min_factor": 1.05,
+          "max_factor": 1.8
+        },
+        {
+          "id": "w105_260",
+          "min_factor": 1.05,
+          "max_factor": 2.6
+        },
+        {
+          "id": "w130_220",
+          "min_factor": 1.3,
+          "max_factor": 2.2
+        },
+        {
+          "id": "w130_260",
+          "min_factor": 1.3,
+          "max_factor": 2.6
+        }
+      ]
+    }
+  },
+  "path_discrimination": {
+    "enabled": true,
+    "dense_fractions": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "matched_candidate_comparison": {
+      "controlled_band_id": "square_reference",
+      "two_site_model_id": "two_site_square",
+      "bare_dispersion_tolerance": 1e-12,
+      "readout_window_source": "two_site_dmft_baseline_band_edge_factors",
+      "comparison_scope": "same bare square dispersion and same low/high-energy observable definitions; the two evolutions differ by a controlled self-energy trajectory versus two-site-DMFT evolution"
+    },
+    "controlled_grid": {
+      "nk": 48,
+      "nw": 301,
+      "wmax": 10.0,
+      "n_lambda": 31
+    }
+  },
+  "controlled_pole_family": {
+    "band_id": "square_reference",
+    "critical_interaction": 12.0,
+    "u_max_ratio": 1.08,
+    "pole_energy_prefactor": 6.0,
+    "nk": 48,
+    "nw": 601,
+    "wmax": 12.0,
+    "n_lambda": 41,
+    "alphas": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "self_energy_broadening": 0.08,
+    "lattice_broadening": 0.04,
+    "readout_temperature": 0.05,
+    "high_energy_window": [
+      4.2,
+      8.8
+    ],
+    "residue_motion_competition": {
+      "nk": 32,
+      "nw": 401,
+      "n_lambda": 31,
+      "residue_exponents": [
+        1.0,
+        2.0,
+        4.0
+      ],
+      "motion_exponents": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ]
+    }
+  },
+  "five_bath_ed_dmft": {
+    "input_deck": "inputs/five_bath_ed_dmft/bath_fit_checkpoint.csv",
+    "primary_endpoint": 8.0,
+    "endpoint_audit": [
+      7.0,
+      8.0
+    ],
+    "representative_interactions": [
+      0.0,
+      3.0,
+      6.0,
+      8.0
+    ],
+    "nw": 1201,
+    "wmax": 12.0,
+    "nk": 64,
+    "robustness_nk": 64,
+    "baseline_broadening": 0.1,
+    "robustness_broadenings": [
+      0.08,
+      0.1,
+      0.12
+    ],
+    "readout_temperature": 0.05,
+    "z_imaginary_frequency": 0.1,
+    "baseline_high_energy_window": [
+      4.2,
+      8.8
+    ],
+    "robustness_windows": [
+      {
+        "id": "w080_180",
+        "wmin": 3.2,
+        "wmax": 7.2
+      },
+      {
+        "id": "w080_220",
+        "wmin": 3.2,
+        "wmax": 8.8
+      },
+      {
+        "id": "w105_180",
+        "wmin": 4.2,
+        "wmax": 7.2
+      },
+      {
+        "id": "w105_220",
+        "wmin": 4.2,
+        "wmax": 8.8
+      },
+      {
+        "id": "w130_220",
+        "wmin": 5.2,
+        "wmax": 8.8
+      },
+      {
+        "id": "w130_260",
+        "wmin": 5.2,
+        "wmax": 10.4
+      }
+    ]
+  }
+}

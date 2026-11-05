@@ -1,0 +1,7 @@
+# Five-bath ED-DMFT primitive input deck
+
+`bath_fit_checkpoint.csv` is the declared primitive numerical input for the finite-bath validation. It contains nine particle-hole-symmetric bath parameter sets at `U/t = 0,...,8`. Each row supplies the interaction `U`, the zero-energy bath hybridization `V0`, two symmetric bath-pair hybridizations `V1,V2`, their positive energies `e1,e2`, and associated fit/self-consistency diagnostics.
+
+The canonical driver does **not** treat precomputed spectra, self-energies, observables, or crossover markers as inputs. Starting from this parameter deck, it reconstructs the six-site Anderson impurity Hamiltonian, exactly diagonalizes the required particle sectors, evaluates the impurity Green function and self-energy, constructs the square-lattice local spectrum, and regenerates the five-bath observables, markers, robustness sweeps, and representative spectra used in the manuscript.
+
+All nine rows in the declared input deck satisfy the stored bath-parameter convergence flag. This flag refers to convergence of the finite-bath parameter iteration; it does not imply a vanishing DMFT self-consistency residual. The nonzero stored fit errors and self-consistency residuals remain explicit diagnostics and are reported in Supplementary Fig. S5. The bath-parameter deck and its diagnostics therefore define the finite-bath primitive-input boundary for reproducibility.

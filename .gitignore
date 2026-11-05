@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments and local configuration
+.venv/
+venv/
+.env
+
+# Checkpoint transaction state
+.stepwise_transaction/
+
+# Regenerable outputs (not shipped in clean/submission snapshots)
+results/
+figures/
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
